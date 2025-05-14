@@ -13,7 +13,7 @@ public class Converter {
 
     public static CurrencyResponse currencyConverter(String from, String to, double value) {
 
-        String apiKey = "f24a511d36d9ba1d01b5ef19";
+        String apiKey = "SUA_API_KEY";
         String endpoint = "https://v6.exchangerate-api.com/v6/" + apiKey + "/pair/" + from + "/" + to + "/" + value;
 
         HttpClient client = HttpClient.newHttpClient();
@@ -41,7 +41,7 @@ public class Converter {
 
     public static CurrencyResponse filterCurrency (String baseCode) {
 
-        String apiKey = "f24a511d36d9ba1d01b5ef19";
+        String apiKey = "SUA_API_KEY";
         String endpoint = "https://v6.exchangerate-api.com/v6/" + apiKey + "/latest/" + baseCode;
 
         HttpClient client = HttpClient.newHttpClient();

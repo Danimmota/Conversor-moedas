@@ -39,7 +39,7 @@ src/
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/conversor-moedas-java.git
+git clone https://github.com/Danimmota/Conversor-moedas.git
 cd conversor-moedas-java
 ```
 2. Abra sua IDE favorita (utilizei o IntelliJ)
