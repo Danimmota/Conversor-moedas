@@ -1,9 +1,9 @@
 package application;
 
-import controller.CurrencyController;
+import service.CurrencyService;
 
 public class Main {
     public static void main(String[] args) {
-        CurrencyController.run();
+        CurrencyService.run();
     }
 }

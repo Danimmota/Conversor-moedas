@@ -21,18 +21,15 @@ Este é um projeto Java de console que permite converter valores entre diferente
 src/
 ├── application/               # Classe principal (start da aplicação)
 │   └── Main.java
-├── controller/                # Lógica de controle
-│   └── CurrencyController.java
+├── menu/                      # Interface via console
+│   └── Menu.java
 ├── model/                     # Modelos de dados
 │   └── CurrencyResponse.java
 ├── service/                   # Requisições à API, manipulação de arquivos e histórico
-│   ├── ConversionHistory.java
 │   ├── Converter.java
-│   ├── GeneratorFilterJson.java
+│   ├── CurrencyService.java   # Lógica de controle
 │   └── GeneratorJson.java
-├── view/                      # Interface via console
-│   ├── Menu.java
-│   └── MenuCoin.java
+
 ```
 ---
 ### ▶️ Como Executar

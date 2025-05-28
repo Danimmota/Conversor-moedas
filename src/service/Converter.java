@@ -1,6 +1,8 @@
 package service;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import model.CurrencyResponse;
 
 import java.io.IOException;
@@ -13,7 +15,7 @@ public class Converter {
 
     public static CurrencyResponse currencyConverter(String from, String to, double value) {
 
-        String apiKey = "SUA_API_KEY";
+        String apiKey = "f24a511d36d9ba1d01b5ef19";
         String endpoint = "https://v6.exchangerate-api.com/v6/" + apiKey + "/pair/" + from + "/" + to + "/" + value;
 
         HttpClient client = HttpClient.newHttpClient();
@@ -28,7 +30,12 @@ public class Converter {
 
             if (response.statusCode() == 200) {
                 String responseBody = response.body();
-                return new Gson().fromJson(responseBody, CurrencyResponse.class);
+
+                Gson gson = new GsonBuilder()
+                        .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                        .create();
+
+                return gson.fromJson(responseBody, CurrencyResponse.class);
             } else {
                 System.out.println("Erro da API: código " + response.statusCode());
                 return null;
@@ -41,7 +48,7 @@ public class Converter {
 
     public static CurrencyResponse filterCurrency (String baseCode) {
 
-        String apiKey = "SUA_API_KEY";
+        String apiKey = "f24a511d36d9ba1d01b5ef19";
         String endpoint = "https://v6.exchangerate-api.com/v6/" + apiKey + "/latest/" + baseCode;
 
         HttpClient client = HttpClient.newHttpClient();
@@ -56,7 +63,12 @@ public class Converter {
 
             if (response.statusCode() == 200) {
                 String responseBody = response.body();
-                return new Gson().fromJson(responseBody, CurrencyResponse.class);
+
+                Gson gson = new GsonBuilder()
+                        .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES) //vai ignorar as letras minúsculas e os underlines do json
+                        .create();
+
+                return gson.fromJson(responseBody, CurrencyResponse.class);
             } else {
                 System.out.println("Erro da API: código " + response.statusCode());
                 return null;
@@ -65,4 +77,6 @@ public class Converter {
             throw new RuntimeException("Erro ao consultar a API" + e.getMessage());
         }
     }
+
+
 }

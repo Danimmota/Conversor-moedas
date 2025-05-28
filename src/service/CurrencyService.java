@@ -1,16 +1,10 @@
-package controller;
+package service;
 
 import model.CurrencyResponse;
-import service.ConversionHistory;
-import service.Converter;
-import service.GeneratorFilterJson;
-import service.GeneratorJson;
-import view.Menu;
-import view.MenuCoin;
-
+import menu.Menu;
 import java.util.Scanner;
 
-public class CurrencyController {
+public class CurrencyService {
     public static void run() {
         Scanner scanner = new Scanner(System.in);
         int desiredOperation; //variável para receber a operação desejada
@@ -38,12 +32,12 @@ public class CurrencyController {
                 }
                 case 7 -> {
                     //retorna uma lista do historico de arquivos gerados e retorna para o loop
-                    ConversionHistory.listHistory();
+                    GeneratorJson.listHistory();
                     continue;
                 }
                 case 8 -> {
                     System.out.println("Opções disponíveis para filtrar: ");
-                    MenuCoin.menuCoin(); //chama o menu de opcoes para realizar o filtro
+                    Menu.menuCoin(); //chama o menu de opcoes para realizar o filtro
                 }
                 case 9 -> {
                     System.out.println("Obrigado por utilizar o conversor!");
@@ -56,16 +50,18 @@ public class CurrencyController {
             }
 
             if (!from.isEmpty() && !to.isEmpty()) {
-                System.out.println("Você escolheu converter: " + from + " ->> " + to);
+                System.out.println("----------------------------------------------" +
+                        "\nVocê escolheu converter: " + from + " ->> " + to);
             }
 
             if (desiredOperation >= 1 && desiredOperation <= 6) {
-                System.out.print("Agora digite o valor que deseja converter: ");
+                System.out.print("\nAgora digite o valor que deseja converter: ");
                 double value = scanner.nextDouble(); // variável para receber o valor que será convertido
 
                 CurrencyResponse currency = Converter.currencyConverter(from, to, value);
                 if (currency != null && currency.result().equals("success")) {
-                    System.out.printf("Valor convertido: %.2f %s -> %.2f %s\n",value, from, currency.conversionResult(), to);
+                    System.out.printf("----------------------------------------------" +
+                            "\nValor convertido: %.2f %s -> %.2f %s",value, from, currency.conversionResult(), to);
 
                     GeneratorJson.fileJson(currency, from, to);
                 } else {
@@ -79,9 +75,10 @@ public class CurrencyController {
                 CurrencyResponse currencyResponse = Converter.filterCurrency(baseCode);
                 if (currencyResponse != null && currencyResponse.result().equals("success")) {
 
-                    System.out.println("Filtro " + currencyResponse);
+                    System.out.println("----------------------------------------------" +
+                            "\nFiltro " + currencyResponse);
 
-                    GeneratorFilterJson.fileFilterJson(currencyResponse, baseCode);
+                    GeneratorJson.fileFilterJson(currencyResponse, baseCode);
                 } else {
                     System.out.println("Erro ao filtrar moeda");
                 }
