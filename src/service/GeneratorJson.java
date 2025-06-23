@@ -29,7 +29,7 @@ public class GeneratorJson {
 
         try (FileWriter written = new FileWriter(fileName)){
             written.write(gson.toJson(currency));
-            
+
             System.out.println("\n----------------------------------------------" +
                     "\n- Arquivo JSON gerado: " + fileName);
         } catch (IOException e) {

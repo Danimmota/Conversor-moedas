@@ -15,7 +15,7 @@ public class Converter {
 
     public static CurrencyResponse currencyConverter(String from, String to, double value) {
 
-        String apiKey = "f24a511d36d9ba1d01b5ef19";
+        String apiKey = "xxxxxxxxxxx";
         String endpoint = "https://v6.exchangerate-api.com/v6/" + apiKey + "/pair/" + from + "/" + to + "/" + value;
 
         HttpClient client = HttpClient.newHttpClient();
